@@ -1,0 +1,37 @@
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int n = word.length();
+
+        boolean allUpper = true;
+        boolean allLower = true;
+
+        for (int i = 0; i < n; i++) {
+            char ch = word.charAt(i);
+
+            if (ch >= 'A' && ch <= 'Z') {
+                allLower = false;
+            }
+
+            if (ch >= 'a' && ch <= 'z') {
+                allUpper = false;
+            }
+        }
+
+        // All letters are uppercase OR all letters are lowercase
+        if (allUpper || allLower) {
+            return true;
+        }
+
+        // First letter uppercase, remaining letters lowercase
+        if (word.charAt(0) >= 'A' && word.charAt(0) <= 'Z') {
+            for (int i = 1; i < n; i++) {
+                if (word.charAt(i) >= 'A' && word.charAt(i) <= 'Z') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        return false;
+    }
+}
